@@ -32,6 +32,16 @@ def predict():
         else:
             Fuel_Type_Petrol=0
             Fuel_Type_Diesel=1
+            
+        if(Owner==1):
+                Owner_1=1
+                Owner_3=0
+        elif(Owner==3):
+                Owner_1=0
+                Owner_3=1
+        else:
+            Fuel_Type_Petrol=0
+            Fuel_Type_Diesel=0
         
         carAge= 2021-Year
         Seller_Type_Individual=request.form['Seller_Type_Individual']
@@ -45,7 +55,7 @@ def predict():
         else:
             Transmission_Mannual=0
             
-        prediction=model.predict([[Present_Price,Kms_Driven,Owner,carAge,Fuel_Type_Diesel,Fuel_Type_Petrol,Seller_Type_Individual,Transmission_Mannual]])
+        prediction=model.predict([[Present_Price,Kms_Driven,Owner_1,Owner_3,carAge,Fuel_Type_Diesel,Fuel_Type_Petrol,Seller_Type_Individual,Transmission_Mannual]])
         
         output=round(prediction[0],2)
         if output<0:
